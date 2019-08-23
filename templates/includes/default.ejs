@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="<%= themeConfig.domain %>/styles/index.css">
+<main class="main height-100 flex flex-v" style="background-image: url(<%= themeConfig.domain %>/images/bg.jpg)">
+        <div class="main-top flex flex1">
+          <a  to="/home" class="mobile-nav-btn iconfont icon-fenlei"></nuxt-link>
+          <a  to="/home" class="mobile-logo iconfont icon-logo" ></nuxt-link>
+          <!--主页上左部分-->
+          <div class="height-100 main-left">
+            <div class="main-left-top">
+              <aside class="logo"><nuxt-link to="/home" class="iconfont icon-logo"></nuxt-link></aside>
+              <nav class="nav">
+                <% menus.forEach(function(menu) { %>
+                    <% if (menu.openType === 'External') { %>
+                        <a href="<%= menu.link %>" title="<%= menu.name %>"  alt="<%= menu.name %>" target="_blank">
+                            <div class="icon"><i class="iconfont" :class="'icon-'+menu.slug"></i></div>
+                            <div class="name">
+                              <div class="cnname"><%= menu.name %></div>
+                              <div class="enname">{{menu.description}}</div>
+                            </div>
+                        </a>
+                    <% } else { %>
+                        <a href="<%= menu.link %>" title="<%= menu.name %>"  alt="<%= menu.name %>">
+                            <div class="icon"><i class="iconfont" :class="'icon-'+menu.slug"></i></div>
+                            <div class="name">
+                              <div class="cnname"><%= menu.name %></div>
+                              <div class="enname">{{menu.description}}</div>
+                            </div>
+                        </a>
+                    <% } %>
+                  <% }); %>
+              </nav>
+            </div>
+    
+            <div class="social flex flex-align-center ">
+              <div class="flex1 text-center">
+                <div class="icon relative">
+                  <a class="iconfont icon-wechat1193418easyiconnet"></a>
+                  <div class="float">
+                    <img alt="微信二维码" title="微信二维码" src="http://oyz3pjs26.bkt.clouddn.com/qrcode_for_gh_b4c00b84720c_258%20%281%29.jpg">
+                  </div>
+                </div>
+              </div>
+              <div class="flex1 text-center">
+                <div class="icon"><a title="加我QQ" alt="加我QQ" class="iconfont icon-qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=547437716&site=qq&menu=yes"></a></div>
+              </div>
+              <div class="flex1 text-center">
+                <div class="icon"><a title="关注我微博" alt="关注我微博" class="iconfont icon-weibo" target="_blank" href="https://weibo.com/tellmesoul/"></a></div>
+              </div>
+            </div>
+          </div>
+          <!--主页上右部分-->
+          <nuxt />
+        </div>
+      </main>

@@ -1,20 +1,16 @@
 <html>
   <head>
-  <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
+      <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
   </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <%- include('./includes/header') %>
+  <body style="background-image: url(<%= themeConfig.domain %>/images/bg.jpg)">
+      <%- include('./includes/main-left') %>
 
-        <div class="tags-container">
-          <% tags.forEach((tag) => { %>
-            <a class="tag" href="<%= tag.link %>"><%= tag.name %></a>
-          <% }); %>
-        </div>
-
-        <%- include('./includes/footer') %>
+      <div class="main-right flex1">
+          <div class="tags-container">
+              <% tags.forEach((tag) => { %>
+                <a class="tag" href="<%= tag.link %>"><%= tag.name %></a>
+              <% }); %>
+            </div>
       </div>
-    </div>
   </body>
 </html>

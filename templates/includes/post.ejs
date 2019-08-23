@@ -1,0 +1,41 @@
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+<div class="main-right flex1 flex flex-v">
+    <div class="article-content flex1">
+        <vuescroll class="article-content-container">
+          <div class="article-title row">
+            <div class="title"><%= post.title %></div>
+            <div class=" other"><!--<i class="iconfont icon-iconfontordinaryliulan"></i> 56--> <i class="iconfont icon-shijian"></i>· <%= post.dateFormat %> ·</div>
+          </div>
+          <div class="article-message markdown-body">
+            <article class="text" v-highlight>
+                <%- post.content %>
+            </article>
+          </div>
+          <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
+            <% if (commentSetting.commentPlatform === 'gitalk') { %>
+              <%- include('./includes/gitalk') %>
+            <% } %>
+    
+            <% if (commentSetting.commentPlatform === 'disqus') { %>
+              <%- include('./includes/disqus') %>
+            <% } %>
+          <% } %>
+        </vuescroll>
+      </div>
+</div>
+
+
+  <script>
+     var niceScroller=$(".article-content").niceScroll({
+         cursorborderradius: "0px",
+         cursorcolor: "#ea5038",//#CC0071 光标颜色
+         autohidemode: false,
+         railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+         cursorborder: '0px',
+         background:"#211e1c"
+     });
+  </script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.7/styles/a11y-dark.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.9/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>

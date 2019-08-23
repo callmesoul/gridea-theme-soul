@@ -1,26 +1,70 @@
-<div class="post-container">
-  <% posts.forEach(function(post) { %>
-    <article class="post">
-      <a href="<%= post.link %>">
-        <h2 class="post-title"><%= post.title %></h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · <%= post.dateFormat %> ·
-        </time>
-        <% post.tags.forEach(function(tag) { %>
-          <a href="<%= tag.link %>" class="post-tag">
-            # <%= tag.name %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+<div class="main-right flex1 flex flex-v">
+  <div class="box flex1">
+    <!--<div class="box-top">-->
+    <!--<span>首页</span>-->
+    <!--</div>-->
+    <div class="box-content">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <% posts.forEach(function(post) { %>
+          <a title="<%= post.title %>" alt="<%= post.title %>" href="<%= post.link %>"
+            class="post-item swiper-slide flex flex-v">
+            <div class="image">
+              <% if (post.feature) { %>
+              <img title="<%= post.title %>" alt="<%= post.title %>" src="<%= post.feature %>"></img>
+              <% } else { %>
+              <img title="<%= post.title %>" alt="<%= post.title %>"
+                src="<%= themeConfig.domain %>/assets/images/default.jpg"></img>
+              <% } %>
+            </div>
+            <div class="content-warp flex1 flex flex-v">
+              <div class="title">&lt; <%= post.title %> &gt;</div>
+              <div class="content flex1">
+                <%= post.abstract %>
+              </div>
+              <div class="post-tags">
+                  <% post.tags.forEach(function(tag) { %>
+                    <span href="<%= tag.link %>" class="">
+                      # <%= tag.name %>
+                    </span>
+                  <% }); %>
+              </div>
+              <div class="other">
+                <!--<a><i class="iconfont icon-iconfontordinaryliulan"></i>52</a>-->
+                <!--<a><i class="iconfont icon-icon27"></i>52</a>-->
+                <span><i class="iconfont icon-shijian"></i><%= post.dateFormat %></span>
+              </div>
+            </div>
           </a>
-        <% }); %>
+          <% }); %>
+
+
+        </div>
+        <div class="swiper-scrollbar"></div>
       </div>
-      <% if (themeConfig.showFeatureImage && post.feature) { %>
-        <a href="<%= post.link %>" class="post-feature-image" style="background-image: url('<%= post.feature %>')">
-        </a>
-      <% } %>
-      <div class="post-abstract">
-        <%- post.abstract %>
-      </di>
-    </article>
-  <% }); %>
+    </div>
+  </div>
 </div>
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    direction: 'horizontal', // 垂直切换选项
+    mousewheel: true,
+    slidesPerView: 4,
+    spaceBetween: 30,
+    scrollbar: {
+      el: '.swiper-scrollbar'
+    },
+    on: {
+      reachEnd: function () {
+        
+      },
+    },
+
+    // 如果需要滚动条
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })
+</script>
